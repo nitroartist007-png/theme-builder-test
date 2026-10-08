@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blush-rose" data-font="editorial">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SocialMuse • All-in-One Social Links & Creator Portfolio</title>
+  <meta name="description" content="A premium, feminine, modern social-media landing page and link-in-bio portfolio for creators, artists, streamers, and personal brands.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/button-styles.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/customizer.css">
+</head>
+<body class="btn-style-glass-card">
+
+  <!-- Ambient Visual Layers -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+  <div class="ambient-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-badge">
+        <span class="brand-logo">
+          <img src="assets/logo.svg" alt="SocialMuse" width="28" height="28">
+        </span>
+        <span class="brand-name">SocialMuse</span>
+      </a>
+
+      <!-- Center: Visitor Mode vs Live Editor Mode Toggle -->
+      <div class="mode-toggle-group" role="group" aria-label="View Mode">
+        <button id="modeVisitor" class="mode-btn active" title="View page as an audience visitor">Visitor</button>
+        <button id="modeEditor" class="mode-btn" title="Quick edit mode">Editor</button>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="header-actions">
+        <button id="btnHeaderTheme" class="btn-header" title="Switch theme color">
+          <span style="display:inline-flex;">🎨</span>
+          <span class="btn-text-responsive">Theme</span>
+        </button>
+
+        <button id="btnHeaderMusic" class="btn-header" title="Toggle relaxing ambient lofi chords">
+          <span id="musicIconBox" style="display:inline-flex;">🎵</span>
+          <span class="btn-text-responsive">Ambient Vibes</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- 1. Hero / Profile Section -->
+    <section class="profile-section" aria-label="Creator Profile">
+      <!-- Avatar with Glow Ring & Status Pill -->
+      <div class="avatar-container" id="heroAvatarContainer" title="Click to change avatar">
+        <div class="avatar-halo"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar-image-wrapper">
+          <img id="heroAvatarImg" class="avatar-img" src="assets/avatars/artist.jpg" alt="Aria Vance">
+          <div class="avatar-change-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <span>Change</span>
+          </div>
+        </div>
+
+        <div class="status-pill" id="heroStatusPill">
+          <span class="status-dot online" id="heroStatusDot"></span>
+          <span id="heroStatusText">✨ 2 Commission Slots Open</span>
+        </div>
+      </div>
+
+      <!-- Display Name & Verified Badge -->
+      <div class="profile-name-row">
+        <h1 class="profile-name" id="heroDisplayName">Aria Vance</h1>
+        <span class="verified-icon" id="heroVerifiedBadge" title="Verified SocialMuse Creator"></span>
+      </div>
+
+      <!-- Handle Button (Click to Copy) -->
+      <div class="profile-username-row">
+        <button class="profile-username-btn" id="heroUsername" title="Click to copy handle">
+          <span>@ariavance</span>
+        </button>
+      </div>
+
+      <!-- Category / Location Tag -->
+      <div>
+        <span class="profile-category-tag" id="heroCategory">🌸 Digital Art & Streaming • Los Angeles / Tokyo</span>
+      </div>
+
+      <!-- Bio Description -->
+      <p class="profile-bio" id="heroBio">
+        🌸 3D Concept Artist & Cozy Streamer | Creating pastel fantasy worlds, cute character designs & chill vibes ✨ Commissions Open!
+      </p>
+
+      <!-- Stats Pill Bar -->
+      <div class="profile-stats-bar" id="heroStatsBar"></div>
+
+      <!-- Profile Action Pills -->
+      <div class="profile-actions-row">
+        <button class="pill-action-btn" id="pillBtnShare" title="Share this profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share Profile
+        </button>
+
+        <button class="pill-action-btn" id="pillBtnQR" title="Scan or download QR code">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          QR Code
+        </button>
+
+        <button class="pill-action-btn tip-btn" id="pillBtnTip" title="Support creator on Ko-fi">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          Buy Me a Matcha
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. Custom Links Section (Highlights, Drops, Commissions) -->
+    <section class="section-wrapper" aria-label="Featured Custom Links">
+      <div class="section-header-row">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.7 8.3L23 11l-8.3 2.7L12 22l-2.7-8.3L1 11l8.3-2.7z"/></svg>
+          Featured Highlights & Drops
+        </h2>
+      </div>
+
+      <!-- Custom Links Container -->
+      <div class="links-stack" id="customLinksStack"></div>
+    </section>
+
+    <!-- 3. Social Media Buttons Section (20 Platforms) -->
+    <section class="section-wrapper" aria-label="Social Media Platforms">
+      <div class="section-header-row">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          Connect Across The Web
+        </h2>
+        <span class="section-badge-counter" id="socialCountBadge">13 links</span>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="category-filter-bar" id="categoryFilterBar">
+        <button class="filter-tab active" data-category="all">✨ All Links</button>
+        <button class="filter-tab" data-category="social">💬 Social & Community</button>
+        <button class="filter-tab" data-category="stream">🎬 Streaming & Video</button>
+        <button class="filter-tab" data-category="portfolio">🎨 Art & Portfolio</button>
+        <button class="filter-tab" data-category="shop">🛍️ Shop & Merch</button>
+        <button class="filter-tab" data-category="support">💖 Support & Tiers</button>
+      </div>
+
+      <!-- Social Links Grid / Stack -->
+      <div class="links-grid-mode" id="socialsStack"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/logo.svg" alt="SocialMuse" width="26" height="26">
+        </div>
+        <p class="footer-tagline">SocialMuse • Made for female creators, artists, streamers & muses</p>
+        <p class="footer-sub">Crafted with elegance, glassmorphism & love • <a href="javascript:void(0)" onclick="SocialMuse.studio.open()">Customize this page</a></p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ==========================================================================
+       Creator Studio Customization Drawer
+       ========================================================================== -->
+  <div class="studio-drawer-backdrop" id="studioDrawerBackdrop">
+    <aside class="studio-drawer" id="studioDrawer" aria-label="Creator Studio Customizer">
+      <!-- Drawer Header -->
+      <div class="studio-header">
+        <div class="studio-title-box">
+          <img src="assets/logo.svg" alt="Logo" width="22" height="22">
+          <h3>Creator Studio</h3>
+          <span class="badge-pro">PRO</span>
+        </div>
+        <button class="studio-close-btn" id="studioCloseBtn" aria-label="Close studio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <nav class="studio-nav-tabs">
+        <button class="studio-tab-btn active" data-tab="profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profile
+        </button>
+        <button class="studio-tab-btn" data-tab="themes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 10 10 0 0 0 0-20"/></svg>
+          Themes
+        </button>
+        <button class="studio-tab-btn" data-tab="socials">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Socials
+        </button>
+        <button class="studio-tab-btn" data-tab="custom">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Custom
+        </button>
+        <button class="studio-tab-btn" data-tab="export">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+      </nav>
+
+      <!-- Scrollable Tab Content Panels -->
+      <div class="studio-body">
+        <div class="studio-section active" id="studioSection-profile"></div>
+        <div class="studio-section" id="studioSection-themes"></div>
+        <div class="studio-section" id="studioSection-socials"></div>
+        <div class="studio-section" id="studioSection-custom"></div>
+        <div class="studio-section" id="studioSection-export"></div>
+      </div>
+
+      <!-- Studio Drawer Footer -->
+      <div class="studio-footer">
+        <button class="btn-studio-reset" id="btnStudioReset">Reset Defaults</button>
+        <button class="btn-studio-save" id="btnStudioSave">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+          Save & Apply
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Floating Trigger Button (Bottom Right) -->
+  <button class="studio-floating-trigger" id="studioFloatingTrigger" title="Open Creator Studio Customizer">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.7 8.3L23 11l-8.3 2.7L12 22l-2.7-8.3L1 11l8.3-2.7z"/></svg>
+    <span>Customize Page</span>
+  </button>
+
+  <!-- ==========================================================================
+       Modals
+       ========================================================================== -->
+
+  <!-- Share Profile Modal -->
+  <div class="modal-backdrop" id="shareModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="modal-header">
+        <h3 class="modal-title">Share Creator Profile</h3>
+        <p class="modal-subtitle">Share your all-in-one link with friends, fans, and sponsors</p>
+      </div>
+
+      <div class="share-channels-grid">
+        <button class="share-channel-btn" id="shareToX">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>X / Twitter</span>
+        </button>
+        <button class="share-channel-btn" id="shareToWhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span>WhatsApp</span>
+        </button>
+        <button class="share-channel-btn" id="shareToTelegram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/></svg>
+          <span>Telegram</span>
+        </button>
+        <button class="share-channel-btn" id="shareToReddit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.628 5.373 12 12 12s12-5.372 12-12c0-6.627-5.373-12-12-12zm8.563 12.846c.108.384.168.788.168 1.204 0 3.03-3.896 5.485-8.731 5.485s-8.731-2.455-8.731-5.485c0-.416.06-.82.168-1.204-.633-.42-.988-1.042-.988-1.72 0-1.258 1.218-2.28 2.716-2.28.694 0 1.329.222 1.815.594 1.285-.85 3.04-1.396 4.97-1.442l1.058-4.707 3.324.739c.07-.58.625-1.033 1.3-1.033.725 0 1.312.518 1.312 1.157 0 .638-.587 1.157-1.312 1.157-.611 0-1.123-.377-1.274-.88l-2.73-.607-.88 3.916c1.884.062 3.593.606 4.846 1.442.486-.372 1.121-.594 1.815-.594 1.498 0 2.716 1.022 2.716 2.28 0 .678-.355 1.3-.988 1.72z"/></svg>
+          <span>Reddit</span>
+        </button>
+      </div>
+
+      <div class="share-copy-box">
+        <input type="text" id="inputShareUrl" class="share-copy-input" readonly value="">
+        <button class="btn-copy-modal" id="btnCopyShareModal">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div class="modal-backdrop" id="qrModal">
+    <div class="modal-dialog" style="text-align:center;">
+      <button class="modal-close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="modal-header">
+        <h3 class="modal-title">Creator QR Code</h3>
+        <p class="modal-subtitle">Perfect for Twitch overlays, convention badges, and business cards</p>
+      </div>
+
+      <div class="qr-card-container">
+        <div id="qrCanvasContainer"></div>
+        <div class="qr-card-title" id="qrCardName">Aria Vance</div>
+        <div class="qr-card-handle" id="qrCardHandle">@ariavance</div>
+      </div>
+
+      <button id="btnDownloadQR" class="btn-studio-save" style="width:100%; justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download High-Res QR Code (.png)
+      </button>
+    </div>
+  </div>
+
+  <!-- Tip / Matcha Modal -->
+  <div class="modal-backdrop" id="tipModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="modal-header" style="text-align:center;">
+        <span style="font-size:2.4rem; display:block; margin-bottom:8px;">🍵</span>
+        <h3 class="modal-title">Buy <span id="tipCreatorName">Aria</span> a Matcha</h3>
+        <p class="modal-subtitle">Directly support indie art creation, cozy stream upgrades & tutorials</p>
+      </div>
+
+      <form id="tipForm" style="display:flex; flex-direction:column; gap:16px;">
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+          <label style="border:1.5px solid var(--card-border); border-radius:12px; padding:12px 6px; text-align:center; cursor:pointer; background:var(--card-bg);">
+            <input type="radio" name="tipAmount" value="5" checked style="margin-right:4px;">
+            <strong>$5</strong>
+            <div style="font-size:0.7rem; color:var(--text-muted);">1 Matcha 🍵</div>
+          </label>
+          <label style="border:1.5px solid var(--card-border); border-radius:12px; padding:12px 6px; text-align:center; cursor:pointer; background:var(--card-bg);">
+            <input type="radio" name="tipAmount" value="15" style="margin-right:4px;">
+            <strong>$15</strong>
+            <div style="font-size:0.7rem; color:var(--text-muted);">Sweet Treat 🍰</div>
+          </label>
+          <label style="border:1.5px solid var(--card-border); border-radius:12px; padding:12px 6px; text-align:center; cursor:pointer; background:var(--card-bg);">
+            <input type="radio" name="tipAmount" value="30" style="margin-right:4px;">
+            <strong>$30</strong>
+            <div style="font-size:0.7rem; color:var(--text-muted);">Super Fan 💖</div>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-studio-save" style="width:100%; justify-content:center; padding:14px;">
+          Proceed to Ko-fi / Support Page →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Inline Link Quick-Edit Modal -->
+  <div class="modal-backdrop" id="inlineEditModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="modal-header">
+        <h3 class="modal-title">Quick Edit Link</h3>
+        <p class="modal-subtitle">Replace this social button's URL and title</p>
+      </div>
+
+      <form id="inlineEditForm" style="display:flex; flex-direction:column; gap:14px;">
+        <input type="hidden" id="inlineEditType" value="social">
+        <input type="hidden" id="inlineEditId" value="">
+
+        <div class="form-group">
+          <label class="form-label">Button Title / Platform Name</label>
+          <input type="text" id="inlineEditTitle" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Destination URL</label>
+          <input type="text" id="inlineEditUrl" class="form-input" required placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subtitle / Description</label>
+          <input type="text" id="inlineEditSubtitle" class="form-input" placeholder="e.g. Daily art updates & stories">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Highlight Badge (Optional)</label>
+          <input type="text" id="inlineEditBadge" class="form-input" placeholder="e.g. LIVE, NEW, SALE">
+        </div>
+
+        <button type="submit" class="btn-studio-save" style="width:100%; justify-content:center; padding:12px; margin-top:6px;">
+          Update Link
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/qr-generator.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/customizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

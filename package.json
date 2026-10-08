@@ -1,0 +1,22 @@
+{
+  "name": "socialmuse",
+  "version": "1.0.0",
+  "description": "Premium, modern, feminine social links landing page for creators, streamers, and artists",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "link-in-bio",
+    "social-links",
+    "creator",
+    "streamer",
+    "portfolio",
+    "landing-page",
+    "feminine-design",
+    "glassmorphism"
+  ],
+  "author": "SocialMuse",
+  "license": "MIT"
+}
